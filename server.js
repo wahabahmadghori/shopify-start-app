@@ -6,6 +6,9 @@ const dotenv = require('dotenv');
 const { verifyRequest } = require('@shopify/koa-shopify-auth');
 const session = require('koa-session');
 
+const {default:graphQlProxy} = require('@shopify/koa-shopify-graphql-proxy')
+const {ApiVersion} = require('@shopify/koa-shopify-graphql-proxy')
+
 dotenv.config();
 
 const port = parseInt(process.env.PORT, 10) || 3000;
@@ -33,10 +36,16 @@ app.prepare().then(() => {
       afterAuth(ctx) {
         const { shop, accessToken } = ctx.session;
 
+        ctx.cookies.set('shopOrigin',shop,{
+          httpOnly:false
+        })
+
         ctx.redirect('/');
       },
     }),
   );
+
+  server.use(graphQlProxy({version:ApiVersion.July20}))
 
   server.use(verifyRequest());
   server.use(async (ctx) => {
