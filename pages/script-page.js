@@ -15,8 +15,24 @@ mutation scriptTagCreate($input: ScriptTagInput!) {
     }
   }
 `
+const Query_SCRIPTING = gql`
+query{
+  scriptTags(first:5){
+    edges{
+      node {
+        id
+        src
+      }
+    }
+  }
+}
+`
 
 const ScriptPage = () => {
+  const {loading,error,data} = useQuery()
+  if(loading) return <div>loading....</div>
+  if(error) return <div>{error.message}</div>
+  console.log(data)
     return (
         <div>
             Hello from Script Page
