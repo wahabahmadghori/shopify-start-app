@@ -1,2 +1,2 @@
 console.log('This is comming from script tag api')
-$('body').css('background-color','red')
+$('.site-header').prepend('<div style="background:red;">Free Shipping</div>')
