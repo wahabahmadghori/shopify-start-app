@@ -54,7 +54,7 @@ const ScriptPage = () => {
             <h2>
                Script Tags List:
             </h2>
-            {data.edges.map(edge=>{
+            {data.scriptTags.edges.map(edge=>{
               <p key={edge.node.id}>{edge.node.id}</p>
             })}
             
