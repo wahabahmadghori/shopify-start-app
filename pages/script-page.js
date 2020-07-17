@@ -15,7 +15,7 @@ mutation scriptTagCreate($input: ScriptTagInput!) {
     }
   }
 `
-const Query_SCRIPTING = gql`
+const Query_SCRIPTTAGS = gql`
 query{
   scriptTags(first:5){
     edges{
@@ -30,14 +30,28 @@ query{
 `
 
 const ScriptPage = () => {
-  console.log('Hello from script page')
-  const {loading,error,data} = useQuery(Query_SCRIPTING)
+  const {loading,error,data} = useQuery(Query_SCRIPTTAGS)
+  const [createScripts] = useMutation(CREATE_SCRIPT_TAG)
+
   if(loading) return <div>loading....</div>
   if(error) return <div>{error.message}</div>
-  console.log(data)
     return (
         <div>
-            Hello from Script Page
+            <button 
+            onClick={()=>{
+              createScripts({
+                variables:{
+                  input:{
+                    src:"https://shopifyapp01.herokuapp.com/test-script.js",
+                    "displayScope": "ALL"
+                  }
+                }
+              })
+            }}>
+
+            </button>
+            Script Tags List:
+            
         </div>
     )
 }
