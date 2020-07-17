@@ -22,6 +22,7 @@ query{
       node {
         id
         src
+        displayScope
       }
     }
   }
