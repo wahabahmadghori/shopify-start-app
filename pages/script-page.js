@@ -37,13 +37,13 @@ const ScriptPage = () => {
   if(error) return <div>{error.message}</div>
     return (
         <div>
-            <button 
+            <button type="submit" 
             onClick={()=>{
               createScripts({
                 variables:{
                   input:{
                     src:"https://shopifyapp01.herokuapp.com/test-script.js",
-                    "displayScope": "ALL"
+                    displayScope: "ALL"
                   }
                 }
               })
