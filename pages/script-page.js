@@ -48,9 +48,12 @@ const ScriptPage = () => {
                 }
               })
             }}>
-
+              Creat Script Tag
             </button>
-            Script Tags List:
+            <h2>
+               Script Tags List:
+            </h2>
+            
             
         </div>
     )
