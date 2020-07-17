@@ -35,6 +35,7 @@ const ScriptPage = () => {
 
   if(loading) return <div>loading....</div>
   if(error) return <div>{error.message}</div>
+  console.log(data)
     return (
         <div>
             <button type="submit" 
