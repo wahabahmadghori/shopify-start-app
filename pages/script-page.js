@@ -30,6 +30,7 @@ query{
 `
 
 const ScriptPage = () => {
+  console.log('Hello from script page')
   const {loading,error,data} = useQuery(Query_SCRIPTING)
   if(loading) return <div>loading....</div>
   if(error) return <div>{error.message}</div>
