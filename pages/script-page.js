@@ -71,7 +71,7 @@ const ScriptPage = () => {
             {data.scriptTags.edges.map(edge=>{
               return (
               <p key={edge.node.id}>
-                {`id:${  edge.node.id} src:${  edge.node.src}`}
+                {`id:\t${edge.node.id} src:\t${edge.node.src}`}
                 <AiFillDelete 
                 style={{fontSize:"2rem",cursor:"pointer",color:"#ff2222"}}
                 onClick={()=>{
