@@ -78,7 +78,22 @@ const ScriptPage = () => {
           </Button>
           </Card>
         </Layout.Section>
-        
+        <Layout.Section>
+          <Card sectioned>
+          <ResourceList
+    resourceName={{singular: 'Script', plural: 'Scripts'}}
+    items={data.scriptTags.edges}
+    renderItem={(item) => {
+
+      return (
+        <ResourceItem
+        id={item.node.id}>
+        </ResourceItem>
+      );
+    }}
+  />
+          </Card>
+        </Layout.Section>
       </Layout>
     </Page>
   );
