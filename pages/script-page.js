@@ -97,7 +97,7 @@ const ScriptPage = () => {
             onClick={()=>{
                   deleteScripts({
                     variables:{
-                      id:edge.node.id
+                      id:item.node.id
                     },
                     refetchQueries:[{query:Query_SCRIPTTAGS}]
                   })
