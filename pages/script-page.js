@@ -62,7 +62,7 @@ const ScriptPage = () => {
           <Card sectioned>
           <Button 
           size="slim" 
-          secondary
+          primary="true"
           onClick={()=>{
             createScripts({
               variables:{
@@ -79,7 +79,7 @@ const ScriptPage = () => {
           </Card>
         </Layout.Section>
         <Layout.Section>
-          <Card>
+          <Card sectioned>
           <ResourceList
     resourceName={{singular: 'Script', plural: 'Scripts'}}
     items={data.scriptTags.edges}
