@@ -2,7 +2,7 @@ import React from "react";
 import gql from "graphql-tag";
 import { AiFillDelete } from "react-icons/ai";
 import { useQuery, useMutation } from "@apollo/react-hooks";
-import { Page } from "@shopify/polaris";
+import { Page,Layout,Card,Button } from "@shopify/polaris";
 
 const CREATE_SCRIPT_TAG = gql`
   mutation scriptTagCreate($input: ScriptTagInput!) {
@@ -74,7 +74,6 @@ const ScriptPage = () => {
               refetchQueries:[{query:Query_SCRIPTTAGS}]
             })
           }}>
-          >
             Create Tag
           </Button>
           </Card>
