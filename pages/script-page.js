@@ -101,7 +101,7 @@ const ScriptPage = () => {
                     },
                     refetchQueries:[{query:Query_SCRIPTTAGS}]
                   })
-                }}>Add product</Button>
+                }}>Delete</Button>
            </Stack.Item>
          </Stack>
         </ResourceItem>
