@@ -2,7 +2,7 @@ import React from "react";
 import gql from "graphql-tag";
 import { AiFillDelete } from "react-icons/ai";
 import { useQuery, useMutation } from "@apollo/react-hooks";
-import { Page,Layout,Card,Button } from "@shopify/polaris";
+import { Page,Layout,Card, Stack } from "@shopify/polaris";
 
 const CREATE_SCRIPT_TAG = gql`
   mutation scriptTagCreate($input: ScriptTagInput!) {
@@ -62,7 +62,7 @@ const ScriptPage = () => {
           <Card sectioned>
           <Button 
           size="slim" 
-          primary={true}
+          secondary
           onClick={()=>{
             createScripts({
               variables:{
@@ -76,6 +76,38 @@ const ScriptPage = () => {
           }}>
             Create Tag
           </Button>
+          </Card>
+        </Layout.Section>
+        <Layout.Section>
+          <Card>
+          <ResourceList
+    resourceName={{singular: 'Script', plural: 'Scripts'}}
+    items={data.scriptTags.edges}
+    renderItem={(item) => {
+
+      return (
+        <ResourceItem
+        id={item.node.id}>
+         <Stack>
+           <Stack.item>
+             <p>{item.node.id}</p>
+           </Stack.item>
+           <Stack.item> 
+            <Button outline 
+            onClick={()=>{
+                  deleteScripts({
+                    variables:{
+                      id:edge.node.id
+                    },
+                    refetchQueries:[{query:Query_SCRIPTTAGS}]
+                  })
+                }}>Add product</Button>
+           </Stack.item>
+         </Stack>
+        </ResourceItem>
+      );
+    }}
+  />
           </Card>
         </Layout.Section>
       </Layout>
