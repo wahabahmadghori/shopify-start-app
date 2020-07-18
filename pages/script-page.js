@@ -92,17 +92,7 @@ const ScriptPage = () => {
            <Stack.item>
              <p>{item.node.id}</p>
            </Stack.item>
-           <Stack.item> 
-            <Button outline 
-            onClick={()=>{
-                  deleteScripts({
-                    variables:{
-                      id:item.node.id
-                    },
-                    refetchQueries:[{query:Query_SCRIPTTAGS}]
-                  })
-                }}>Add product</Button>
-           </Stack.item>
+           
          </Stack>
         </ResourceItem>
       );
