@@ -78,38 +78,7 @@ const ScriptPage = () => {
           </Button>
           </Card>
         </Layout.Section>
-        <Layout.Section>
-          <Card sectioned>
-          <ResourceList
-    resourceName={{singular: 'Script', plural: 'Scripts'}}
-    items={data.scriptTags.edges}
-    renderItem={(item) => {
-
-      return (
-        <ResourceItem
-        id={item.node.id}>
-         <Stack>
-           <Stack.item>
-             <p>{item.node.id}</p>
-           </Stack.item>
-           <Stack.item> 
-            <Button outline 
-            onClick={()=>{
-                  deleteScripts({
-                    variables:{
-                      id:edge.node.id
-                    },
-                    refetchQueries:[{query:Query_SCRIPTTAGS}]
-                  })
-                }}>Add product</Button>
-           </Stack.item>
-         </Stack>
-        </ResourceItem>
-      );
-    }}
-  />
-          </Card>
-        </Layout.Section>
+        
       </Layout>
     </Page>
   );
