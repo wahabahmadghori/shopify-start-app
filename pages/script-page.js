@@ -73,7 +73,7 @@ const ScriptPage = () => {
               <p key={edge.node.id}>
                 {`id:${  edge.node.id} src:${  edge.node.src}`}
                 <AiFillDelete 
-                style={{fontSize:"1.2rem",color:"#ff2222"}}
+                style={{fontSize:"2rem",cursor:"pointer",color:"#ff2222"}}
                 onClick={()=>{
                   deleteScripts({
                     variables:{
