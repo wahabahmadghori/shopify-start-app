@@ -44,6 +44,7 @@ mutation scriptTagDelete($id: ID!) {
 const ScriptPage = () => {
   const {loading,error,data} = useQuery(Query_SCRIPTTAGS)
   const [createScripts] = useMutation(CREATE_SCRIPT_TAG)
+  const [deleteScripts] = useMutation(DELETE_SCRIPTTAGS)
 
   if(loading) return <div>loading....</div>
   if(error) return <div>{error.message}</div>
@@ -58,7 +59,8 @@ const ScriptPage = () => {
                     src:"https://shopifyapp01.herokuapp.com/test-script.js",
                     displayScope: "ALL"
                   }
-                }
+                },
+                refetchQueries:[{query:Query_SCRIPTTAGS}]
               })
             }}>
               Creat Script Tag
@@ -69,8 +71,17 @@ const ScriptPage = () => {
             {data.scriptTags.edges.map(edge=>{
               return (
               <p key={edge.node.id}>
-                {`id:  ${edge.node.id} src:  ${edge.node.src}`}
-                <AiFillDelete/>
+                {`id:${  edge.node.id} src:${  edge.node.src}`}
+                <AiFillDelete 
+                style={{fontSize:"1.2rem",color:"#ff2222"}}
+                onClick={()=>{
+                  deleteScripts({
+                    variables:{
+                      id:edge.node.id
+                    },
+                    refetchQueries:[{query:Query_SCRIPTTAGS}]
+                  })
+                }}/>
                 </p>)
             })}
             
