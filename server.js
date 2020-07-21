@@ -1,10 +1,24 @@
 require('isomorphic-fetch');
 const Koa = require('koa');
+const KoaRouter = require('koa-router')
 const next = require('next');
 const { default: createShopifyAuth } = require('@shopify/koa-shopify-auth');
 const dotenv = require('dotenv');
 const { verifyRequest } = require('@shopify/koa-shopify-auth');
 const session = require('koa-session');
+
+const router = new KoaRouter()
+router.get('/api/products', async(ctx) => {
+  try {
+    ctx.body={
+      status:"success",
+      body:"Hello from Products Api"
+    }
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 
 const {default:graphQlProxy} = require('@shopify/koa-shopify-graphql-proxy')
 const {ApiVersion} = require('@shopify/koa-shopify-graphql-proxy')
