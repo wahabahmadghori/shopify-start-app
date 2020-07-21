@@ -3,4 +3,8 @@ $('.site-header').prepend('<div style="background:red;">Free Shipping</div>')
 
 console.log("Hello")
 fetch('https://shopifyapp01.herokuapp.com/api/products?shop=mstarterapp.myshopify.com')
-.then(data=>console.log(data.data))
+.then(res=>res.json()).then(data=>{
+    console.log(data.data)
+}).catch(error=>{
+    console.log(error)
+})
