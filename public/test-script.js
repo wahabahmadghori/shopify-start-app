@@ -1,10 +1,11 @@
 console.log('This is comming from script tag api')
-$('.site-header').prepend('<div style="background:red;">Free Shipping</div>')
 
-console.log("Hello")
+const makeHeader = (data)=>{
+    $('.site-header').prepend(`<div style="background:red;">${data}</div>`)
+}
 fetch('https://cors-anywhere.herokuapp.com/https://shopifyapp01.herokuapp.com/api/products?shop=mstarterapp.myshopify.com')
 .then(res=>res.json()).then(data=>{
-    console.log(data)
+    console.log(data.body)
 }).catch(error=>{
     console.log(error)
 })
