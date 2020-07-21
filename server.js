@@ -19,6 +19,19 @@ const handle = app.getRequestHandler();
 
 const router = new KoaRouter()
 
+
+router.get('/api/products', async(ctx) => {
+  try {
+    ctx.body={
+      status:"success",
+      body:"Hello from Products Api"
+    }
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+
 const { SHOPIFY_API_SECRET_KEY, SHOPIFY_API_KEY } = process.env;
 
 app.prepare().then(() => {
@@ -48,23 +61,13 @@ app.prepare().then(() => {
     }),
   );
 
-  router.get('/api/products', async(ctx) => {
-     try {
-       ctx.body={
-         status:"success",
-         body:"Hello from Products Api"
-       }
-     } catch (error) {
-       console.log(error)
-     }
-  })
 
   server.use(graphQlProxy({version:ApiVersion.July20}))
+  server.use(verifyRequest());
 
   server.use(router.allowedMethods)
   server.user(router.routes)
 
-  server.use(verifyRequest());
   server.use(async (ctx) => {
     await handle(ctx.req, ctx.res);
     ctx.respond = false;
