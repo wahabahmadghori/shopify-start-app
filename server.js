@@ -60,8 +60,11 @@ app.prepare().then(() => {
   );
 
   server.use(graphQlProxy({version:ApiVersion.July20}))
-
   server.use(verifyRequest());
+
+  server.use(router.allowedMethods)
+  server.use(router.routes)
+  
   server.use(async (ctx) => {
     await handle(ctx.req, ctx.res);
     ctx.respond = false;
