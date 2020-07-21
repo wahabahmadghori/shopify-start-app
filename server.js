@@ -8,6 +8,8 @@ const { verifyRequest } = require('@shopify/koa-shopify-auth');
 const session = require('koa-session');
 
 const router = new KoaRouter()
+const server = new Koa()
+
 router.get('/api/products', async(ctx) => {
   try {
     ctx.body={
@@ -19,6 +21,8 @@ router.get('/api/products', async(ctx) => {
   }
 })
 
+  server.use(router.allowedMethods())
+  server.use(router.routes())
 
 const {default:graphQlProxy} = require('@shopify/koa-shopify-graphql-proxy')
 const {ApiVersion} = require('@shopify/koa-shopify-graphql-proxy')
@@ -33,7 +37,6 @@ const handle = app.getRequestHandler();
 const { SHOPIFY_API_SECRET_KEY, SHOPIFY_API_KEY } = process.env;
 
 app.prepare().then(() => {
-  const server = new Koa();
   server.use(session({ sameSite: 'none', secure: true }, server));
   server.keys = [SHOPIFY_API_SECRET_KEY];
 
@@ -62,8 +65,7 @@ app.prepare().then(() => {
   server.use(graphQlProxy({version:ApiVersion.July20}))
   server.use(verifyRequest());
 
-  server.use(router.allowedMethods())
-  server.use(router.routes())
+  
 
   server.use(async (ctx) => {
     await handle(ctx.req, ctx.res);
