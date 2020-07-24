@@ -1,6 +1,9 @@
 require('isomorphic-fetch');
+
 const Koa = require('koa');
 const KoaRouter = require('koa-router')
+const koaBody = require('koa-body')
+
 const next = require('next');
 const { default: createShopifyAuth } = require('@shopify/koa-shopify-auth');
 const dotenv = require('dotenv');
@@ -10,15 +13,28 @@ const session = require('koa-session');
 const router = new KoaRouter()
 const server = new Koa()
 
+const products = [
+  {"image":"test1"}
+]
 router.get('/api/products', async(ctx) => {
   try {
     ctx.body={
       status:"success",
-      body:"Hello from Products Api"
+      body: products
     }
   } catch (error) {
     console.log(error)
   }
+})
+
+router.post('/api/products',koaBody(),async(ctx)=>{
+  try {
+    const body = ctx.request.body
+    products.push(body) 
+  } catch (error) {
+    console.log(error)
+  }
+
 })
 
   server.use(router.allowedMethods())
