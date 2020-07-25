@@ -18,11 +18,13 @@ function Index(){
 
     return (
       <Page>
-        <TitleBar>
-          primaryAction={{
-            content:"Select Products",
-            onAction:()=>seModal({open:true})
-          }}
+        <TitleBar
+        primaryAction={{
+          content:"Select Products",
+          onAction:()=>seModal({open:true})
+        }}
+        >
+          
         </TitleBar>
         <ResourcePicker
         resourceType='Product'
