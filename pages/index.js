@@ -21,7 +21,7 @@ function Index(){
         <TitleBar
         primaryAction={{
           content:"Select Products",
-          onAction:()=>seModal({open:true})
+          onAction:()=>setModal({open:true})
         }}
         >
           
