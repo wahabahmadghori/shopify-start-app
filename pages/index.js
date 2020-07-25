@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {EmptyState,Page,Layout} from '@shopify/polaris'
+import {EmptyState,Page,Layout,TitleBar} from '@shopify/polaris'
 import {ResourcePicker} from '@shopify/app-bridge-react'
 import store from 'store-js'
 import ProductList from '../components/ProductList'
