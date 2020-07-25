@@ -3,7 +3,7 @@ import {EmptyState,Page,Layout} from '@shopify/polaris'
 import {ResourcePicker,TitleBar} from '@shopify/app-bridge-react'
 import store from 'store-js'
 import ProductList from '../components/ProductList'
-const axios = require('axios')
+import axios from 'axios'
 
 function Index(){
   const [modal, setModal] = useState({open:false})
