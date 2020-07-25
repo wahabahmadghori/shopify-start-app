@@ -25,7 +25,7 @@ router.get('/api/products', async(ctx) => {
   }
 })
 
-router.post('https://cors-anywhere.herokuapp.com/https://shopifyapp01.herokuapp.com/api/products',koaBody(),async(ctx)=>{
+router.post('/api/products',koaBody(),async(ctx)=>{
   try {
     const body = ctx.request.body
     products.push(body) 
