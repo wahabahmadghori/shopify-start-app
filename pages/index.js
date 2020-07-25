@@ -18,14 +18,15 @@ function Index() {
     selectedResources.map((product) => makeApiCall(product));
   }
   async function makeApiCall(products) {
-    axios({
-      method: 'post',
-      url: '/api/products',
-      data: {
-        firstName: 'Fred',
-        lastName: 'Flintstone'
-      }
-    });
+    const url = '/api/products/';
+    axios
+      .post(url,products)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   return (
