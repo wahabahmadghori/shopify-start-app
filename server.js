@@ -13,9 +13,7 @@ const session = require('koa-session');
 const router = new KoaRouter()
 const server = new Koa()
 
-const products = [
-  {"image":"test1"}
-]
+const products = []
 router.get('/api/products', async(ctx) => {
   try {
     ctx.body={

@@ -3,7 +3,7 @@ import {EmptyState,Page,Layout} from '@shopify/polaris'
 import {ResourcePicker,TitleBar} from '@shopify/app-bridge-react'
 import store from 'store-js'
 import ProductList from '../components/ProductList'
-
+const axios = require('axios')
 
 function Index(){
   const [modal, setModal] = useState({open:false})
@@ -14,6 +14,16 @@ function Index(){
     setModal({open:false})
     store.set('ids',idsFromRosourses)
     console.log(store.get('ids'))
+    const selectedResources = resources.selection
+    selectedResources.map(product=>makeApiCall(product))
+  }
+  async function makeApiCall(product){
+    const url = '/api/products'
+    axios.post(url,product).then((result)=>{
+      console.log(result)
+    }).catch((error)=>{
+      console.log(error)
+    })
   }
 
     return (
