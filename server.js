@@ -28,7 +28,7 @@ router.get('/api/products', async(ctx) => {
 router.post('/api/products',koaBody(),async(ctx)=>{
   try {
     const body = ctx.request.body
-    products.push(body) 
+    await products.push(body) 
     console.log('Item Added')
   } catch (error) {
     console.log(error)
