@@ -18,9 +18,9 @@ function Index() {
     selectedResources.map((product) => makeApiCall(product));
   }
   async function makeApiCall(products) {
-    const url = "/api/products";
+    const url = '/api/products';
     axios
-      .post(url, products)
+      .get(url)
       .then((result) => {
         console.log(result);
       })
