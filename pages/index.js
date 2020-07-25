@@ -19,8 +19,9 @@ function Index() {
   }
   async function makeApiCall(products) {
     const url = '/api/products';
+    console.log(products)
     axios
-      .get(url)
+      .post(url,products)
       .then((result) => {
         console.log(result);
       })
